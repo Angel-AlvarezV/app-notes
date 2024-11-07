@@ -5,3 +5,64 @@
 $primary-color: color("red", "base") !default;
 $secondary-color: color("red", "base") !default;
 @import "materialize";
+
+/* Modo Oscuro */
+body.dark-mode {
+    background-color: #272727; 
+    color: #ffffff;
+  }
+
+body.dark-mode .navbar {
+    background-color: #333;  /* Fondo de la barra de navegación oscuro */
+}
+
+body.dark-mode .card {
+    background-color: #444;  /* Fondo de las tarjetas de las notas */
+    color: white;
+}
+
+body.dark-mode .card-title {
+    color: white;  /* Color de los títulos de las notas */
+}
+  
+.btn-dark-mode {
+    background-color: #272727;
+    color: white;
+    margin-right: 600px;
+}
+
+/* Estilos generales del botón */
+#toggle-dark-mode  {
+    background-color: #fff;  /* Fondo claro por defecto */
+    color: #000;  /* Texto negro por defecto */
+  }
+
+#toggle-dark-mode.dark-mode-active {
+    background-color: #333;  /* Fondo oscuro para el botón */
+    color: white;  /* Texto blanco en el botón */
+}
+
+#toggle-dark-mode.dark-mode-active i.material-icons {
+    color: #fff;  /* Color del icono en modo oscuro */
+  }
+
+#toggle-dark-mode i.material-icons {
+    color: #000;  /* Color del icono en modo claro */
+  }
+
+body.dark-mode .delete-icon .material-icons {
+    color: #f44336; /* Color rojo para el ícono de eliminar */
+  }
+
+body.dark-mode .edit-icon .material-icons {
+    color: #4caf50; /* Color verde para el ícono de editar */
+}
+
+body.dark-mode .delete-icon .material-icons:hover,
+body.dark-mode .edit-icon .material-icons:hover {
+  opacity: 0.8; /* Efecto hover */
+}
+
+body.dark-mode .nav-wrapper {
+    background-color: #333;  /* Fondo oscuro para el contenedor del navbar */
+}

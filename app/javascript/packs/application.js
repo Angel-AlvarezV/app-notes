@@ -27,4 +27,26 @@ document.addEventListener('turbolinks:load', function () {
   if (tooltipElems.length) {
     M.Tooltip.init(tooltipElems);
   }
+
+  //Modo oscuro
+  const toggleButton = document.getElementById('toggle-dark-mode');
+  const body = document.body;
+  // Verifica si el modo oscuro está habilitado en el almacenamiento local
+  if (localStorage.getItem('dark-mode') === 'true') {
+    body.classList.add('dark-mode');
+    toggleButton.classList.add('dark-mode-active');
+  }
+  if (toggleButton) {
+    toggleButton.addEventListener('click', function() {
+      body.classList.toggle('dark-mode');
+      toggleButton.classList.toggle('dark-mode-active');
+
+      // Guardar la preferencia del usuario en el almacenamiento local
+      if (body.classList.contains('dark-mode')) {
+        localStorage.setItem('dark-mode', 'true');
+      } else {
+        localStorage.setItem('dark-mode', 'false');
+      }
+    });
+  }
 })
