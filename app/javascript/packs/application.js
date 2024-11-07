@@ -21,4 +21,10 @@ document.addEventListener('turbolinks:load', function () {
   if (elems.length) {
     elems.forEach(elem => M.textareaAutoResize(elem))
   }
+
+  // Inicializar los tooltips de Materialize
+  let tooltipElems = document.querySelectorAll('.tooltipped');
+  if (tooltipElems.length) {
+    M.Tooltip.init(tooltipElems);
+  }
 })

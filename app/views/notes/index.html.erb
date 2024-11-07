@@ -30,7 +30,7 @@
 </div>
 
 <div class="fixed-action-btn">
-  <%= link_to new_note_path, title: 'New note', class: 'btn-floating btn-large pulse' do %>
+  <%= link_to new_note_path, class: 'btn-floating btn-large pulse tooltipped', title: 'New note', data: { tooltip: 'Nueva Nota', position: 'top' } do %> <!-- Se agrega tooltip Nueva Nota -->
     <%= material_icon.add %>
   <% end %>
 </div>
