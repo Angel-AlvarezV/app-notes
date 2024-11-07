@@ -9,7 +9,8 @@ class NotesController < ApplicationController
       @notes = @notes.search_by_title(filters[:title])
     end
 
-    @notes
+     # Agrupar las notas por mes
+     @notes_by_month = @notes.group_by { |note| note.created_at.strftime("%B") }
   end
 
   def show
