@@ -27,7 +27,7 @@ class NotesController < ApplicationController
 
     respond_to do |format|
       if @note.save
-        format.html { redirect_to note_url(@note), notice: "Note was successfully created." }
+        format.html { redirect_to notes_url(@note), notice: "Note was successfully created." } #Se cambia note_url a notes_url para redirecccionar al usuario al indice de notas
         format.json { render :show, status: :created, location: @note }
       else
         format.html { render :new, status: :unprocessable_entity }
