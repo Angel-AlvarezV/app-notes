@@ -227,6 +227,10 @@ document.addEventListener('turbolinks:load', function () {
       es: "El cuerpo no puede estar en blanco",
       en: "Body can't be blank"
     },
+    "A note with this title already exists.": {
+      es: "Ya existe una nota con este título.",
+      en: "A note with this title already exists."
+    },
   };
 
   // Función para traducir mensajes de error
@@ -284,10 +288,6 @@ function updateFilterOptions(language) {
     }
   }
 }
-
-
-
-
 
   // Inicializa el idioma según la preferencia almacenada
   setLanguage(currentLanguage);
