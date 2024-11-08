@@ -28,7 +28,7 @@ body.dark-mode .card-title {
 .btn-dark-mode {
     background-color: #272727;
     color: white;
-    margin-right: 600px;
+    margin-right: 200px;
 }
 
 /* Estilos generales del botón */
@@ -65,4 +65,59 @@ body.dark-mode .edit-icon .material-icons:hover {
 
 body.dark-mode .nav-wrapper {
     background-color: #333;  /* Fondo oscuro para el contenedor del navbar */
+}
+
+.btn-dark-mode-language {
+    background-color: #272727;
+    color: white;
+    margin-right: 400px;
+}
+
+.btn-dark-mode-language.dark-mode-active {
+    background-color: #333;  /* Fondo oscuro para el botón */
+    color: white;  /* Texto blanco en el botón */
+}
+
+#btn-language  {
+    background-color: #fff;
+    color: #000;
+  }
+
+#btn-language.dark-mode-active {
+    background-color: #333;
+    color: white;
+}
+
+/*Se aplica el cambio de color en el texto para que sea mas legible al momento de nueva nota o editar*/
+body.dark-mode input, 
+body.dark-mode textarea, 
+body.dark-mode .editable-text {
+  color: white; /* Cambia el color del texto a blanco */
+  background-color: #333; /* Cambia el fondo para que sea oscuro */
+}
+
+/* Estilos para el modo oscuro */
+body.dark-mode #btn-submit {
+  color: white; /* Texto blanco */
+}
+
+/* Estilos para el modo claro */
+body #btn-submit {
+  color: black; /* Texto blanco */
+}
+
+/* Estilos para el modo oscuro */
+body.dark-mode #new-note-btn {
+  background-color: gray; /* Fondo oscuro */
+  color: white; /* Texto blanco */
+  border: 1px solid gray; /* Borde oscuro */
+}
+
+body.dark-mode #new-note-btn:hover {
+  background-color: #444; /* Fondo más oscuro al pasar el ratón */
+}
+
+/* Estilos para el modo claro */
+body #new-note-btn {
+  color: black; /* Texto blanco */
 }

@@ -1,14 +1,16 @@
-<p id="notice"><%= notice %></p>
+<% if notice %>  <!-- Verificamos si hay un mensaje en 'notice' -->
+  <p id="notice"><%= notice %></p>
+<% end %>
 
 <div class="row">
   <%= form_for :filters, html: { class: 'input-field col s12' }, method: 'get' do |f| %>
     <%= material_icon.search.css_class('prefix') %>
-    <%= f.text_field :title, autofocus: true, placeholder: 'Search by title', value: params.dig(:filters, :title) %>
+    <%= f.text_field :title, id: 'txt-search', autofocus: true, placeholder: 'Search by title', value: params.dig(:filters, :title) %>
   <% end %>
 
   <!-- Ordenar notas por mes y su encabezado-->
   <% @notes_by_month.each do |month, notes| %>
-    <h5 class="col s12"><%= month %></h5>
+    <h5 class="col s12 month" data-month="<%= month.downcase %>"><%= month %></h5>
 
   <% notes.each do |note| %>
     <%= link_to note_path(note) do %>
@@ -30,7 +32,7 @@
 </div>
 
 <div class="fixed-action-btn">
-  <%= link_to new_note_path, class: 'btn-floating btn-large pulse tooltipped', title: 'New note', data: { tooltip: 'Nueva Nota', position: 'top' } do %> <!-- Se agrega tooltip Nueva Nota -->
+  <%= link_to new_note_path, id: 'new-note-btn', class: 'btn-floating btn-large pulse tooltipped', title: 'New note', data: { tooltip: 'Nueva Nota', position: 'top' } do %> <!-- Se agrega tooltip Nueva Nota -->
     <%= material_icon.add %>
   <% end %>
 </div>

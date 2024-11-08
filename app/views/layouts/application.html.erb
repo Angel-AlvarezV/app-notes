@@ -16,13 +16,16 @@
       <nav>
         <div class="nav-wrapper">
           <%= link_to notes_path, class: 'brand-logo center' do %>
-            My note collection
+            <span id="page-title">My note collection</span>
           <% end %>
           <ul id="nav-mobile" class="right hide-on-med-and-down">
             <li>
               <button id="toggle-dark-mode" class="btn btn-dark-mode tooltipped" data-tooltip="Modo Oscuro" aria-label="Modo Oscuro">
                 <i class="material-icons">nightlight_round</i>  <!-- Icono de Modo Oscuro -->
               </button>
+              <button id="btn-language" class="btn btn-medium btn-dark-mode-language" aria-label="Cambiar idioma">
+              <span id="language-label">Español</span>  <!-- El texto de este span cambiará cuando el usuario cambie de idioma -->
+              </button>          
             </li>
           </ul>
         </div>
