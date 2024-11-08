@@ -3,29 +3,40 @@
 <% end %>
 
 <div class="row">
-  <%= form_for :filters, html: { class: 'input-field col s12' }, method: 'get' do |f| %>
+  <%= form_for :filters, url: notes_path, html: { class: 'input-field col s12' }, method: 'get' do |f| %>
     <%= material_icon.search.css_class('prefix') %>
     <%= f.text_field :title, id: 'txt-search', autofocus: true, placeholder: 'Search by title', value: params.dig(:filters, :title) %>
+
+<!-- Seleccionador de orden -->
+    <div class="input-field col s6 m4 l3">
+      <div><label for="filters_order" style="font-weight: bold; font-size: 16px;"><span id="txt_filter">Filtro:</span></label></div>
+      <%= f.select :order, options_for_select([
+        ['Más reciente a más antiguo', 'newest_to_oldest'],
+        ['Más antiguo a más reciente', 'oldest_to_newest'],
+        ['Alfabético A-Z', 'alphabetical_az'],
+        ['Alfabético Z-A', 'alphabetical_za']
+      ], selected: params.dig(:filters, :order)), { }, class: 'browser-default' %><!-- id = filters_order-->
+    </div>
   <% end %>
 
   <!-- Ordenar notas por mes y su encabezado-->
   <% @notes_by_month.each do |month, notes| %>
     <h5 class="col s12 month" data-month="<%= month.downcase %>"><%= month %></h5>
 
-  <% notes.each do |note| %>
-    <%= link_to note_path(note) do %>
-      <div class="col s12 m6 l4"> <!-- Dispositivos moviles (s12), tablets (m6) y computadoras (l4) -->
-        <div class="card">
-          <div class="card-content black-text">
-            <span class="card-title">
-              <%= note.title %>
-              <span class="right" style="font-size: 50%">
-                <%= format_as_localtime note.created_at %>
+    <% notes.each do |note| %>
+      <%= link_to note_path(note) do %>
+        <div class="col s12 m6 l4"> <!-- Dispositivos moviles (s12), tablets (m6) y computadoras (l4) -->
+          <div class="card">
+            <div class="card-content black-text">
+              <span class="card-title">
+                <%= note.title %>
+                <span class="right" style="font-size: 50%">
+                  <%= format_as_localtime note.created_at %>
+                </span>
               </span>
-            </span>
+            </div>
           </div>
         </div>
-      </div>
       <% end %>
     <% end %>
   <% end %>

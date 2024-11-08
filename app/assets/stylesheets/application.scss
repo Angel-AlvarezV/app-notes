@@ -121,3 +121,25 @@ body.dark-mode #new-note-btn:hover {
 body #new-note-btn {
   color: black; /* Texto blanco */
 }
+
+.dark-mode .input-field label,
+.dark-mode .input-field select.browser-default,
+.dark-mode #txt-filter {
+  color: #ffffff; /* Cambia el color del texto */
+}
+
+.dark-mode .input-field select.browser-default {
+  background-color: #333333; /* Fondo oscuro para el select */
+  color: #ffffff; /* Texto claro para el select */
+  border: 1px solid #555555; /* Bordes visibles en modo oscuro */
+}
+
+.dark-mode .input-field label {
+  color: #bbbbbb; /* Color del label para modo oscuro */
+}
+
+.input-field select.browser-default {
+  background-color: #ffffff; /* Fondo blanco para el select */
+  color: #333333; /* Texto oscuro para el select */
+  border: 1px solid black; /* Borde claro para el select */
+}

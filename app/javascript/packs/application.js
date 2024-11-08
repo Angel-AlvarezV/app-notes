@@ -113,6 +113,8 @@ document.addEventListener('turbolinks:load', function () {
   const errorHeading = document.getElementById('error-heading');
   const noticeElement = document.getElementById('notice');
   const errorElement = document.getElementById('error_explanation');
+  const selectOrder = document.getElementById('filters_order');
+  const filterLabel = document.getElementById('txt_filter');
 
   // Función para cambiar el idioma
   function setLanguage(language) {
@@ -167,7 +169,9 @@ document.addEventListener('turbolinks:load', function () {
       noticeElement.textContent = messages[messageKey][currentLanguage];
       }
     }
-      
+    if (filterLabel) {
+      filterLabel.textContent = (language === 'es') ? 'Filtro:' : 'Filter:';
+    }
     
     document.addEventListener('click', function (event) {
       if (noticeElement && !noticeElement.contains(event.target)) {
@@ -190,13 +194,30 @@ document.addEventListener('turbolinks:load', function () {
         ? 'prohibieron que se guardara esta nota:'
         : 'prohibited this note from being saved:';
     }
+
     
+    if (selectOrder) {
+      // Cargar la preferencia guardada al cargar la página
+      const savedOrder = localStorage.getItem('filters_order');
+      if (savedOrder) {
+        selectOrder.value = savedOrder;
+      }
+  
+      // Guardar la preferencia en localStorage cuando se cambia la selección
+      selectOrder.addEventListener('change', function() {
+        localStorage.setItem('filters_order', this.value);
+        this.form.submit();  // Enviar el formulario para aplicar el filtro
+      });
+    }
+    
+    updateFilterOptions(language);
     translateErrors(language);
 
     // Guarda la preferencia en localStorage
     localStorage.setItem('language', language);
     updateMonthTranslations(language);
   }
+  
   const errorMessages = {
     "Title can't be blank": {
       es: "El título no puede estar en blanco",
@@ -208,10 +229,10 @@ document.addEventListener('turbolinks:load', function () {
     },
   };
 
-// Función para traducir mensajes de error
-function translateErrors(language) {
-if (errorElement) {
-  const errorItems = errorElement.querySelectorAll('li');
+  // Función para traducir mensajes de error
+  function translateErrors(language) {
+  if (errorElement) {
+    const errorItems = errorElement.querySelectorAll('li');
 
   errorItems.forEach(item => {
     const errorKey = Object.keys(errorMessages).find(key => item.textContent.includes(key));
@@ -220,7 +241,51 @@ if (errorElement) {
       }
     });
   }
+ }
+
+ const translations = {
+  es: {
+    filterOptions: {
+      newest_to_oldest: 'Más reciente a más antiguo',
+      oldest_to_newest: 'Más antiguo a más reciente',
+      alphabetical_az: 'Alfabético A-Z',
+      alphabetical_za: 'Alfabético Z-A'
+    }
+  },
+  en: {
+    filterOptions: {
+      newest_to_oldest: 'Newest to Oldest',
+      oldest_to_newest: 'Oldest to Newest',
+      alphabetical_az: 'Alphabetical A-Z',
+      alphabetical_za: 'Alphabetical Z-A'
+    }
+  }
+};
+//Función para actualizar filtros
+function updateFilterOptions(language) {
+  const selectOrder = document.getElementById('filters_order');
+  if (selectOrder) {
+    // Limpia todas las opciones actuales
+    selectOrder.innerHTML = '';
+
+    // Añade las opciones traducidas
+    const options = translations[language].filterOptions;
+    Object.keys(options).forEach((value) => {
+      const option = document.createElement('option');
+      option.value = value;
+      option.textContent = options[value];
+      selectOrder.appendChild(option);
+    });
+
+    // Restaurar el valor seleccionado previamente
+    const savedOrder = localStorage.getItem('filters_order');
+    if (savedOrder) {
+      selectOrder.value = savedOrder;
+    }
+  }
 }
+
+
 
 
 
