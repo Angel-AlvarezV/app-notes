@@ -1,52 +1,24 @@
-Note.create([
-  {
-    title: "Old",
-    body: "MyOldTest",
-    created_at: 2.days.from_now,
-  },
-  {
-    title: "New",
-    body: "MyNewText",
-    created_at: 3.days.from_now,
-  },
-  {
-    title: "Older",
-    body: "MyOlderText",
-    created_at: 1.day.from_now,
-  },
-  {
-    title: 'Hello world!',
-    body: 'This is my first note',
-    created_at: Time.now,
-  },
-  {
-    title: 'hello_world',
-    body: 'The same, but underscored',
-    created_at: 1.day.ago,
-  },
-  {
-    title: 'hello\\ world',
-    body: 'The same, but with backslash-escaped space',
-    created_at: 2.day.ago,
-  },
-  {
-    title: 'Hola mundo!',
-    body: 'The same, but in Spanish',
-    created_at: 3.day.ago,
-  },
-  {
-    title: "Today's humidity: 70%",
-    body: 'A little hotter than usual',
-    created_at: 4.day.ago,
-  },
-  {
-    title: 'This one is a little older',
-    body: 'By half a year',
-    created_at: 6.months.ago,
-  },
-  {
-    title: 'world_hello',
-    body: "Ive run out of ideas\n\nBut I do have\n\na lot of linebreaks.",
-    created_at: 5.day.ago,
-  },
-].each {|r| r[:updated_at] = r[:created_at] })
+require 'faker'
+
+# Borrar todas las notas existentes para evitar duplicados en los seeds
+Note.destroy_all
+
+# Crea 200 notas con títulos únicos y contenido variado
+200.times do
+  begin
+
+    # Genera entre 1 y 5 párrafos con entre 3 y 7 oraciones cada uno
+    body_content = Array.new(rand(1..5)) { Faker::Lorem.paragraph(sentence_count: rand(3..7)) }.join("\n\n")
+    title = Faker::Lorem.words(number: 3).join(" ").capitalize
+
+    # Intenta crear una nota con un título único
+    Note.create!(
+      title: title,
+      body: body_content  # Cuerpo dinamico
+    )
+  rescue ActiveRecord::RecordInvalid => e
+    puts "Error al crear la nota: #{e.message}"
+  end
+end
+
+puts "200 notas con títulos únicos y contenido dinámico han sido creadas!"
