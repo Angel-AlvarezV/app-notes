@@ -5,7 +5,7 @@ class NotesController < ApplicationController
     @notes = Note.all
     filters = params[:filters].present? ? params[:filters].to_unsafe_h.symbolize_keys : {}
     if filters && filters[:title].present?
-      @notes = @notes.search_by_title(filters[:title])
+      @notes = @notes.search_by_title_and_body(filters[:title])
     end
 
     order = filters[:order] || 'newest_to_oldest'

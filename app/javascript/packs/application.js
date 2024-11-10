@@ -130,7 +130,7 @@ document.addEventListener('turbolinks:load', function () {
       newNoteBtn.setAttribute('title', (language === 'es') ? 'Nueva Nota' : 'New Note');
     }
     if (titleField) {
-      titleField.setAttribute('placeholder', (language === 'es') ? 'Buscar por título' : 'Search by title');
+      titleField.setAttribute('placeholder', (language === 'es') ? 'Buscar' : 'Search');
     }
     if (editField) {
       editField.setAttribute('title', (language === 'es') ? 'Editar' : 'Edit');
